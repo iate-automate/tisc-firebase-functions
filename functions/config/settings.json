@@ -6,8 +6,8 @@
     "baseWales": "appQOTUlI6kGqjLzE"
   },
   "firebase": {
-    "storageBucket": "gs://tisuk-web.appspot.com",
-    "functionsApiUrl": "https://us-central1-tisuk-web.cloudfunctions.net/api"
+    "storageBucket": "gs://tisc-functions.firebasestorage.app",
+    "functionsApiUrl": "https://us-central1-tisc-functions.cloudfunctions.net/api"
   },
   "site": {
     "origin": "https://portal.traumainformedschools.co.uk"
