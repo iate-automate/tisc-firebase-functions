@@ -72,7 +72,6 @@ app.post('/files', async (req, res) => {
               firebaseStorageDownloadTokens: uuidv4()
             }
           },
-          public: true
       })
       await response.data.pipe(writeStream)
           .on('finish', () => {
@@ -225,7 +224,6 @@ app.post('/pdf/certificate', async (req, res) => {
                 firebaseStorageDownloadTokens: uuidv4()
             }
         },
-        public: true
     })
     const uint8 = new Uint8Array(pdf.buffer)
     writeStream.write(uint8)
@@ -429,7 +427,6 @@ app.post('/pdf/contract', async (req, res) => {
               firebaseStorageDownloadTokens: uuidv4()
           }
       },
-      public: true
   })
   const uint8 = new Uint8Array(pdf.buffer)
   writeStream.write(uint8)
@@ -563,7 +560,6 @@ app.post('/pdf/postage', async (req, res) => {
                   firebaseStorageDownloadTokens: uuidv4()
               }
           },
-          public: true
       })
 
       writeStream.write(Buffer.from(pdf.buffer))
@@ -698,7 +694,6 @@ app.post('/pdf/picklist', async (req, res) => {
                   firebaseStorageDownloadTokens: uuidv4()
               }
           },
-          public: true
       })
 
       writeStream.write(Buffer.from(pdf.buffer))
