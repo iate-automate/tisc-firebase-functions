@@ -1,0 +1,24 @@
+{
+  "airtable": {
+    "apiUrl": "https://api.airtable.com/v0",
+    "baseMain": "appyRWiDNDiBpsoGC",
+    "basePortal": "appul4ZPEgDmU1uPs",
+    "baseWales": "appQOTUlI6kGqjLzE"
+  },
+  "firebase": {
+    "storageBucket": "gs://tisuk-web.appspot.com",
+    "functionsApiUrl": "https://us-central1-tisuk-web.cloudfunctions.net/api"
+  },
+  "site": {
+    "origin": "https://portal.traumainformedschools.co.uk"
+  },
+  "openai": {
+    "model": "gpt-4o",
+    "apiUrl": "https://api.openai.com/v1/chat/completions"
+  },
+  "partners": {
+    "TIS_WALES": {
+      "airtableBaseId": "appQOTUlI6kGqjLzE"
+    }
+  }
+}

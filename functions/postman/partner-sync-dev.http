@@ -1,0 +1,9 @@
+POST http://127.0.0.1:5001/tisuk-web/us-central1/api/partner-sync/courses HTTP/1.1
+Content-Type: application/json
+
+{
+    "partnerCode": "TIS_WALES",
+    "partnersRecordId": "rec2vXnnWeW2f8jMD",
+    "partnerAppId": "appQOTUlI6kGqjLzE",
+    "scheduledCourseId": "recoGCwOYXYual6gY"
+}

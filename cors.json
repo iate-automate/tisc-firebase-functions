@@ -1,0 +1,16 @@
+[
+  {
+    "origin": [
+      "http://localhost:4321",
+      "https://portal.traumainformedschools.co.uk"
+    ],
+    "method": ["GET"],
+    "responseHeader": [
+      "Content-Type",
+      "Range",
+      "Content-Length",
+      "Accept-Ranges"
+    ],
+    "maxAgeSeconds": 3600
+  }
+]

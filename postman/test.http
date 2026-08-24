@@ -1,0 +1,2 @@
+GET https://us-central1-tisuk-web.cloudfunctions.net/api/test HTTP/1.1
+Content-Type: application/json

@@ -1,0 +1,9 @@
+PATCH https://api.airtable.com/v0/appyRWiDNDiBpsoGC/tbllEQ2cSqTTII4AE/rechqJ9eASv0tOQLl HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer {{AIRTABLE_API_KEY}}
+
+{
+    "fields": {
+        "Tags": "partner-wales"
+    }
+}

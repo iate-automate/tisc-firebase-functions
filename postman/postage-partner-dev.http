@@ -1,0 +1,31 @@
+POST http://127.0.0.1:5001/tisuk-web/us-central1/api/submit-postage HTTP/1.1
+Content-Type: application/json
+
+{
+    "title": "Test Wales Course",
+    "source": "Wales",
+    "tags": [],
+    "people": [
+        {
+            "email": "j@jameshuggins.uk",
+            "fname": "James",
+            "lname": "Huggins",
+            "add1": "54A Mount Pleasant",
+            "add2": null,
+            "city": "Atworth",
+            "postcode": "SN12 8HQ",
+            "country": "United Kingdom"
+        },
+        {
+            "email": "james@minnow.tech",
+            "fname": "James",
+            "lname": "Huggins",
+            "add1": "54A Mount Pleasant",
+            "add2": null,
+            "city": "Atworth",
+            "postcode": "SN12 8HQ",
+            "country": "United Kingdom"
+        }
+    ],
+    "picklist": "James Huggins ----- Cards (Teenagers), Handbook, Flyers\n\nJames Huggins ----- Cards (Teenagers), Handbook, Flyers\n\nJames Huggins ----- Cards (Teenagers), Handbook, Flyers\n\nJames Huggins ----- Cards (Teenagers), Handbook, Flyers\n\nJames Huggins ----- Cards (Teenagers), Handbook, Flyers\n\nJames Huggins ----- Cards (Teenagers), Handbook, Flyers\n\nJames Huggins ----- Cards (Teenagers), Handbook, Flyers\n\nJames Huggins ----- Cards (Teenagers), Handbook, Flyers\n\nJames Huggins ----- Cards (Teenagers), Handbook, Flyers\n\nJames Huggins ----- Cards (Teenagers), Handbook, Flyers"
+} 
