@@ -7,7 +7,7 @@
   },
   "firebase": {
     "storageBucket": "gs://tisc-functions.firebasestorage.app",
-    "functionsApiUrl": "https://us-central1-tisc-functions.cloudfunctions.net/api"
+    "functionsApiUrl": "https://europe-west2-tisc-functions.cloudfunctions.net/api"
   },
   "site": {
     "origin": "https://portal.traumainformedschools.co.uk"

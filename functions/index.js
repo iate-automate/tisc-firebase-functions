@@ -2655,6 +2655,7 @@ exports.api = onRequest(
   {
       memory: '1GiB',
       timeoutSeconds: 960,
+      region: 'europe-west2',
   },
   app
 )
