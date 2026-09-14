@@ -88,7 +88,7 @@ app.post('/files', async (req, res) => {
         res.status(200).send({firebaseUrl: fileUrl})
     })
     .catch((error) => {
-        console.error("Error adding file: ", error)
+        console.error("Error adding file:", error.message)
         res.status(400).send(JSON.stringify("Error adding file: ", error))
     })
 })
@@ -574,7 +574,7 @@ app.post('/pdf/postage', async (req, res) => {
       })
   } catch (error) {
       console.error("PDF Generation Error:", error.message)
-      console.error("Error Details:", error)
+      console.error("Error Details:", error.stack)
       res.status(500).send({ error: `Failed to generate PDF: ${error.message}` })
   }
 })
@@ -708,7 +708,7 @@ app.post('/pdf/picklist', async (req, res) => {
       })
   } catch (error) {
       console.error("PDF Generation Error:", error.message)
-      console.error("Error Details:", error)
+      console.error("Error Details:", error.stack)
       res.status(500).send({ error: `Failed to generate PDF: ${error.message}` })
   }
 })
@@ -1069,7 +1069,7 @@ app.post("/search-behaviours", async (req, res) => {
     res.status(200).json({ matches: parsedRecords.matches });
 
   } catch (error) {
-    console.error("Error:", error);
+    console.error("Error:", error.message);
     res.status(400).send("Error getting behaviour search results.");
   }
 });
@@ -1113,7 +1113,7 @@ app.post('/set-auth-cookie', async (req, res) => {
       expiresIn,
     });
   } catch (error) {
-    console.error('Error creating session cookie:', error);
+    console.error('Error creating session cookie:', error.message);
     res.status(400).json({ error: 'Failed to create session cookie' });
   }
 });
@@ -1228,7 +1228,7 @@ app.post('/get-account', async (req, res) => {
       res.status(404).send({ msg: "User not found." });
     }
   } catch(error) {
-    console.error(error);
+    console.error(error.message);
     res.status(400).send({ error: "Error getting user from Airtable.", details: error.message });
   }
 
@@ -1302,14 +1302,14 @@ app.post('/email-queue', async (req, res) => {
               await axios.post(zapUrl, recipient);
               console.log(`Email sent successfully to ${recipient.email}`);
           } catch (error) {
-              console.error(`Error sending email to ${recipient.email}:`, error);
+              console.error(`Error sending email to ${recipient.email}:`, error.message);
           }
       }
 
       res.status(200).send(`Queued ${recipients.length} emails for processing.`);
 
   } catch (error) {
-      console.error("Error processing email queue:", error);
+      console.error("Error processing email queue:", error.message);
       res.status(500).send("Internal Server Error");
   }
 });
