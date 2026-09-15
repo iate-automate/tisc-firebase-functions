@@ -7,11 +7,6 @@
 // Safe to re-run: once a record's URL is updated, it no longer matches the
 // "tisuk-web" filter, so it naturally drops out of scope on the next run.
 //
-// TODO before running: fill in TARGETS below with TISC's actual base/table/
-// field combinations that hold Firebase Storage URLs. Find them by searching
-// TISC's Airtable base(s) (appyRWiDNDiBpsoGC / appul4ZPEgDmU1uPs) for fields
-// containing "tisuk-web.appspot.com" or "firebasestorage.googleapis.com/v0/b/tisuk-web".
-//
 // Usage:
 //   AIRTABLE_PAT=xxx node scripts/migrate-download-urls.js            (dry run)
 //   AIRTABLE_PAT=xxx node scripts/migrate-download-urls.js --write    (live)
@@ -22,7 +17,13 @@ const OLD_DOMAIN_MATCH = "tisuk-web"
 const DRY_RUN = !process.argv.includes("--write")
 
 const TARGETS = [
-  // { baseId: "appyRWiDNDiBpsoGC", tableId: "tblXXXXXXXXXXXXXX", tableName: "TODO", fieldName: "TODO" },
+  // TISCUK HQ
+  { baseId: "appyRWiDNDiBpsoGC", tableId: "tblRFgBpUWbSWRNBH", tableName: "Assessments", fieldName: "Certificate URL" },
+  { baseId: "appyRWiDNDiBpsoGC", tableId: "tbl4Pcec85e7tQiX7", tableName: "Email Templates", fieldName: "Attachment URL" },
+  { baseId: "appyRWiDNDiBpsoGC", tableId: "tbl5Sco63TWT492Ht", tableName: "Resources", fieldName: "Resource URL" },
+  { baseId: "appyRWiDNDiBpsoGC", tableId: "tbl5Sco63TWT492Ht", tableName: "Resources", fieldName: "File URL" },
+  // TIS Online
+  { baseId: "app2wOtP8sc7JvYOw", tableId: "tblSpzvodQy9RS6iY", tableName: "Email Templates", fieldName: "Attachment URL" },
 ]
 
 function sleep(ms) {
