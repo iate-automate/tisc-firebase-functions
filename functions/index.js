@@ -73,14 +73,17 @@ app.post('/files', async (req, res) => {
             }
           },
       })
-      await response.data.pipe(writeStream)
-          .on('finish', () => {
-              console.log('Successfully uploaded file')
-              
-          })
-          .on('error', () => {
-              console.log('Error uploading file')
-          })
+      await new Promise((resolve, reject) => {
+          response.data.pipe(writeStream)
+              .on('finish', () => {
+                  console.log('Successfully uploaded file')
+                  resolve()
+              })
+              .on('error', (err) => {
+                  console.log('Error uploading file')
+                  reject(err)
+              })
+      })
     })
     .then(() => {
         const fileUrl = getStorageUrl(`${firebaseFolder}/${airtableFilename}`)
