@@ -20,7 +20,8 @@ const TARGETS = [
   // TISCUK HQ
   { baseId: "appyRWiDNDiBpsoGC", tableId: "tblRFgBpUWbSWRNBH", tableName: "Assessments", fieldName: "Certificate URL" },
   { baseId: "appyRWiDNDiBpsoGC", tableId: "tbl4Pcec85e7tQiX7", tableName: "Email Templates", fieldName: "Attachment URL" },
-  { baseId: "appyRWiDNDiBpsoGC", tableId: "tbl5Sco63TWT492Ht", tableName: "Resources", fieldName: "Resource URL" },
+  // Resources > Resource URL is a lookup/calc field that mirrors File URL --
+  // not independently writable, migrating File URL alone covers both.
   { baseId: "appyRWiDNDiBpsoGC", tableId: "tbl5Sco63TWT492Ht", tableName: "Resources", fieldName: "File URL" },
   // TIS Online
   { baseId: "app2wOtP8sc7JvYOw", tableId: "tblSpzvodQy9RS6iY", tableName: "Email Templates", fieldName: "Attachment URL" },
