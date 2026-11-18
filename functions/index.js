@@ -772,6 +772,86 @@ app.post('/files/delete', async (req, res) => {
 // Add Course Registers to Airtable
 
 app.post('/registers', async (req, res) => {
+  // Same access rules as the portal: signed-in user, then Portal Admin
+  // or a trainer assigned to the course in the request.
+  const authHeader = req.headers.authorization || '';
+  const token = authHeader.replace('Bearer ', '');
+
+  if (!token) {
+    return res.status(401).send({ error: 'Unauthorized: No token provided' });
+  }
+
+  let decoded;
+  try {
+    decoded = await admin.auth().verifySessionCookie(token, true);
+  } catch (error) {
+    console.error('Registers auth failed:', error.message);
+    return res.status(401).send({ error: 'Unauthorized: Invalid token' });
+  }
+
+  // The portal stores the Airtable People record id in the Firebase display name
+  const peopleRecordId = decoded.name;
+  if (!peopleRecordId) {
+    return res.status(401).send({ error: 'Unauthorized: Missing user record' });
+  }
+
+  let registersPayload = req.body?.registers;
+  if (typeof registersPayload === 'string') {
+    try {
+      registersPayload = JSON.parse(registersPayload);
+    } catch (error) {
+      return res.status(400).send({ error: 'Invalid registers payload' });
+    }
+  }
+
+  const courseId = registersPayload?.courseId;
+  if (!courseId) {
+    return res.status(400).send({ error: 'Course id is required' });
+  }
+
+  try {
+    const peopleResponse = await axios.get(
+      `${AIRTABLE_API}/${AIRTABLE_BASE_MAIN}/People/${peopleRecordId}`,
+      {
+        headers: {
+          Accept: 'application/json',
+          Authorization: `Bearer ${process.env.AIRTABLE_API_KEY}`,
+        },
+      }
+    );
+
+    const peopleFields = peopleResponse.data?.fields || {};
+    if (peopleFields.Portal !== 'Active') {
+      return res.status(403).send({ error: 'Account not active' });
+    }
+
+    const isPortalAdmin = peopleFields['Portal Admin'] === true;
+    if (!isPortalAdmin) {
+      const trainerLink = peopleFields.Trainer;
+      const trainerRecordId = Array.isArray(trainerLink) ? trainerLink[0] : null;
+      if (!trainerRecordId) {
+        return res.status(403).send({ error: 'Not authorised for this course' });
+      }
+
+      const courseResponse = await axios.get(
+        `${AIRTABLE_API}/${AIRTABLE_BASE_MAIN}/${encodeURIComponent('Scheduled Courses')}/${courseId}`,
+        {
+          headers: {
+            Accept: 'application/json',
+            Authorization: `Bearer ${process.env.AIRTABLE_API_KEY}`,
+          },
+        }
+      );
+
+      const trainerRecordIds = courseResponse.data?.fields?.['Trainer Record IDs'] || [];
+      if (!Array.isArray(trainerRecordIds) || !trainerRecordIds.includes(trainerRecordId)) {
+        return res.status(403).send({ error: 'Not authorised for this course' });
+      }
+    }
+  } catch (error) {
+    console.error('Registers authorisation lookup failed:', error.message);
+    return res.status(403).send({ error: 'Not authorised for this course' });
+  }
 
   // Send to Airtable
   try {
